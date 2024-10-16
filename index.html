@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>.</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #f0f0f0;
+    }
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    h2 {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      color: #2c3e50;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #2c3e50;
+      margin-bottom: 10px;
+    }
+    .date {
+      font-size: 18px;
+      text-align: center;
+      color: #34495e;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: inline-block;
+    }
+    .responsive-table {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+    .table-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: #333;
+      color: white;
+      font-weight: bold;
+    }
+    .table-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .table-row:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .col {
+      width: 18%;
+      padding: 10px;
+    }
+    .col-4, .col-5, .col-6, .col-7 {
+      width: 16%;
+      text-align: center;
+    }
+    .col-4 input, .col-5 input, .col-6 input, .col-7 input {
+      transform: scale(1.2);
+    }
+    .print-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+    .print-btn:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+<div class="container" id="attendance">
+  <h2>Absensi Kelas B Sistem Informasi</h2>
+  <p class="date"></p>
+  
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">NIM</div>
+      <div class="col col-2">Nama</div>
+      <div class="col col-4">Hadir</div>
+      <div class="col col-5">Ijin</div>
+      <div class="col col-6">Sakit</div>
+      <div class="col col-7">Tanpa Keterangan</div>
+    </li>
+
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241230680</div>
+      <div class="col col-2" data-label="Nama">AMAR NIMAMAR</div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241230681</div>
+      <div class="col col-2" data-label="Nama">AKBAR RAMADAN</div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241210583</div>
+      <div class="col col-2" data-label="Nama">Anthala Rania Insyirah</div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241230648 </div>
+      <div class="col col-2" data-label="Nama">bagus wirayuda</div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241210609</div>
+      <div class="col col-2" data-label="Nama">Aliya </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220621</div>
+      <div class="col col-2" data-label="Nama">Hikmah </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241210583</div>
+      <div class="col col-2" data-label="Nama">antala</div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241210610 </div>
+      <div class="col col-2" data-label="Nama">Pika Apriani</div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241210583</div>
+      <div class="col col-2" data-label="Nama">antala</div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241210611</div>
+      <div class="col col-2" data-label="Nama">Nur Aisyah Amanah</div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220618</div>
+      <div class="col col-2" data-label="Nama">Risma RISKI AZAHRA</div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220634</div>
+      <div class="col col-2" data-label="Nama">Mayang Sari</div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220631</div>
+      <div class="col col-2" data-label="Nama">Anisa</div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220637</div>
+      <div class="col col-2" data-label="Nama">Suryati </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220628</div>
+      <div class="col col-2" data-label="Nama">Faby Amelia putri</div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220629</div>
+      <div class="col col-2" data-label="Nama">Nurhikmah </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220624</div>
+      <div class="col col-2" data-label="Nama">Hana Silfa Sanda</div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220633</div>
+      <div class="col col-2" data-label="Nama">Welni ley la'bi </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241210613</div>
+      <div class="col col-2" data-label="Nama">Muzarrafah  </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220630</div>
+      <div class="col col-2" data-label="Nama">Elma Gusfita </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241230679</div>
+      <div class="col col-2" data-label="Nama">Acong Wisnu sanjaya </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220635</div>
+      <div class="col col-2" data-label="Nama">Santri Anastasya </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">24122060</div>
+      <div class="col col-2" data-label="Nama">Luna Ramadhani </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241230682</div>
+      <div class="col col-2" data-label="Nama">Vilsa Ramadini </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220626</div>
+      <div class="col col-2" data-label="Nama">Pandi Wiranto </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241230685</div>
+      <div class="col col-2" data-label="Nama">putri risqi amaliahani </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220622</div>
+      <div class="col col-2" data-label="Nama">Ainun Syakia Udiana Putri </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241230678</div>
+      <div class="col col-2" data-label="Nama">Alim Jabbar Syidiq </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220638</div>
+      <div class="col col-2" data-label="Nama">Rifky farel Ikman  </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220632</div>
+      <div class="col col-2" data-label="Nama">Melan Faulana </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241230683</div>
+      <div class="col col-2" data-label="Nama">dimas </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220636</div>
+      <div class="col col-2" data-label="Nama">iglesias Vikrario Sado </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220623</div>
+      <div class="col col-2" data-label="Nama">Bojes afandi </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220639</div>
+      <div class="col col-2" data-label="Nama">Agus musliawan </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241230645</div>
+      <div class="col col-2" data-label="Nama">Muh Fajri </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220627</div>
+      <div class="col col-2" data-label="Nama">Yola Puspita </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    <li class="table-row">
+      <div class="col col-1" data-label="NIM">241220619</div>
+      <div class="col col-2" data-label="Nama">Ahmad Nabil </div>
+      <div class="col col-4" data-label="Hadir"><input type="checkbox" name="attendance"></div>
+      <div class="col col-5" data-label="Ijin"><input type="checkbox" name="attendance"></div>
+      <div class="col col-6" data-label="Sakit"><input type="checkbox" name="attendance"></div>
+      <div class="col col-7" data-label="Tanpa Keterangan"><input type="checkbox" name="attendance"></div>
+    </li>
+    
+  </ul>
+
+  <button class="print-btn" onclick="downloadPDF()">Download</button>
+</div>
+<script>
+  document.querySelector('.date').textContent = 'Tanggal: ' + new Date().toLocaleDateString();
+
+  function downloadPDF() {
+    const attendance = document.getElementById('attendance');
+    const { jsPDF } = window.jspdf;
+    
+    html2canvas(attendance).then(function(canvas) {
+      const imgData = canvas.toDataURL('image/png');
+      const doc = new jsPDF('p', 'mm', 'a4');
+      
+      const imgWidth = 210;
+      const pageHeight = 295;
+      const imgHeight = canvas.height * imgWidth / canvas.width;
+      let heightLeft = imgHeight;
+
+      let position = 0;
+      doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      doc.save(`Absensi-Kelas-B-${new Date().toLocaleDateString()}.pdf`);
+    });
+  }
+</script>
+
+
+</body>
+</html>
